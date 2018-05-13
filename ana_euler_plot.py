@@ -2,28 +2,28 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Initial Conditions
-m  = 1			 # Mass (kg)
+m  = 1		 # Mass (kg)
 t0 = 0           # Initial Time (s)
-dt = 0.1		 # Time Step (s)
-tf = 100		 # Final Time (s)
+dt = 0.1	 # Time Step (s)
+tf = 100	 # Final Time (s)
 
 t  = np.linspace(0, tf, int(tf/dt) + 1)	# Time Array
 
 
-u = 10 			 # Initilal Velocity (m/s)
-v = 0			 # Velocity at time t
+u = 10 		 # Initilal Velocity (m/s)
+v = 0		 # Velocity at time t
 vAnalytical = [] # Velocity Array (Analytical)
 vEuler = [u] 	 # Velocity Array (Euler)
 
-x0 = 0			 # Initial Position (m)
-x  = 0			 # Position at time t (m)
+x0 = 0		 # Initial Position (m)
+x  = 0		 # Position at time t (m)
 xAnalytical = [] # Position Array (Analytical)
 xEuler = [x0] 	 # Position Array (Euler)
 
-k = 5			 # V = kx
-V = k * x	 	 # Potential Funciton (Nm)
-F = - k * x		 # Force = -dV/dx (N)
-a = F / m 		 # Acceleration (m/s^2)
+k = 5		 # V = kx
+V = - k * x	 # Potential Funciton (Nm)
+F = k 		 # Force = -dV/dx (N)
+a = F / m 	 # Acceleration (m/s^2)
 
 
 
@@ -42,23 +42,28 @@ for i in t:
 		xEuler.append(x)
 		vEuler.append(v)
 
-print(len(xEuler))
-print(len(xAnalytical))
-print(len(vEuler))
-print(len(vAnalytical))
-print(len(t))
+# print(len(xEuler))
+# print(len(xAnalytical))
+# print(len(vEuler))
+# print(vAnalytical)
+# print(len(t))
 
-xEulerArray= np.array(xEuler)
-xAnalyticalArray=np.array(xAnalytical)
+xEulerArray = np.array(xEuler)
+xAnalyticalArray = np.array(xAnalytical)
 
-vEulerArray=np.array(vEuler)
-vAnalyticalArray=np.array(vAnalytical)
+vEulerArray = np.array(vEuler)
+vAnalyticalArray = np.array(vAnalytical)
 
 
 plt.figure(1)
 plt.subplot(211)
-plt.plot(xEulerArray, t, 'bo', xAnalyticalArray, t, 'k')
+plt.plot(t, xEulerArray, 'bo', t, xAnalyticalArray, 'k')
+plt.xlabel('Time -->')
+plt.ylabel('Distance -->')
 
 plt.subplot(212)
-plt.plot(vEulerArray, t, 'ro', vAnalyticalArray, t, 'r')
+plt.plot(t, vEulerArray, 'ro', t, vAnalyticalArray, 'r')
+plt.xlabel('Time -->')
+plt.ylabel('Velocity -->')
+plt.suptitle('Plots for Distance and Velocity v/s Time')
 plt.show()
