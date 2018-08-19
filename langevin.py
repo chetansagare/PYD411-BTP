@@ -101,9 +101,10 @@ plt.show()
 
 
 def animate(i):
-    a.clear()
-    a.plot(xEulerArray, xEulerArray * 0)
-    a.plot(xEulerArray[i],0,'ro')
+    if i < len(xEulerArray):
+        a.clear()
+        a.plot(xEulerArray, xEulerArray * 0)
+        a.plot(xEulerArray[i],0,'ro')
 
 
 root = Tk.Tk()
